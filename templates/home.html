@@ -2,7 +2,21 @@
 
 {% block content %}
 
-    <h2>  Welcome, {{ request.user.username }}!</h2>
-
+    {% csrf_token %}
+    {% for p in post %}
+    <div class="container">
+        <div class="jumbotron">
+            <center><h2 style="color: blanchedalmond;">{{p.title}}</h2></center>
+            
+            <p>{{p.authour}}</p>
+            <p>{{p.date}}</p>
+            {% if p.image %}
+                <img src="{{p.image.url}}" alt="Image" height="300px" width="400px">
+            {% endif %}
+            <p>{{p.content}}</p>
+        </div>
+    </div>
+    
+    {% endfor %}
 
 {% endblock %}
