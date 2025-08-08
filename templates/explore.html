@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% csrf_token %}
+    <!-- <div class="container">
+        <h2>Explore Posts</h2>
+        {% for post in posts %}
+            <div class="jumbotron">
+                <h3>{{ post.title }}</h3>
+                <p><strong>Author:</strong> {{ post.author }}</p>
+                <p><strong>Date:</strong> {{ post.date }}</p>
+                {% if post.image %}
+                    <img src="{{ post.image.url }}" alt="Image" height="300px" width="400px">
+                {% endif %}
+                <p>{{ post.content|safe }}</p>
+            </div>
+        {% empty %}
+            <p>No posts available.</p>
+        {% endfor %} -->
+
+<div class="container">
+    <div class="jumbotron">
+        <div class="card card-body">
+            <div class="row">
+                {% for post in posts %}
+                    <div class="col-md-4 mb-3">
+                        <a href="{% url 'explore' %}" style="text-decoration: none; color: inherit;">
+                            <div class="card h-100">
+                                {% if post.image %}
+                                    <img src="{{ post.image.url }}" class="card-img-top" alt="Image" height="200px">
+                                {% endif %}
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ post.title }}</h5>
+                                    <p class="card-text"><strong>Author:</strong> {{ post.author }}</p>
+                                    <p class="card-text"><strong>Date:</strong> {{ post.date }}</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

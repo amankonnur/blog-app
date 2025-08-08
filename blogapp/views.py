@@ -45,3 +45,10 @@ def logout_view(request):
     logout(request)
     return redirect('login')
 
+
+def explore(request):
+    posts = Post.objects.all()
+    for p in posts:
+        p.content = mark_safe(markdown.markdown(p.content))
+
+    return render(request, 'explore.html', {'posts': posts})
