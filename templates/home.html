@@ -19,13 +19,38 @@
     
     {% endfor %} -->
 
-
-    <div class="container">
-        <div class="jumbotron">
-            <center><h2 style="color: #7D8D86;">Welcome to the Home Page</h2></center>
-        </div>
+<!-- <div class="container">
+    <div class="jumbotron">
+        {% for p in post %}
+            <div class="card card-body mb-3">
+                <h2 style="color: #7D8D86;">{{ p.title }}</h2>
+                <p><strong>Author:</strong> {{ p.author }}</p>
+                <p><strong>Date:</strong> {{ p.date }}</p>
+                {% if p.image %}
+                    <img src="{{ p.image.url }}" alt="Image" class="img-fluid mb-3" height="300px" width="400px">
+                {% endif %}
+            </div>
+        {% endfor %}
     </div>
+</div> -->
 
+
+<div class="container">
+    <div class="jumbotron">
+        {% for p in post %}
+            <a href="{% url 'blog_detail' p.id %}" style="text-decoration: none; color: inherit;">
+                <div class="card card-body mb-3" style="cursor: pointer;">
+                    <h2 style="color: #7D8D86;">{{ p.title }}</h2>
+                    <p><strong>Author:</strong> {{ p.author }}</p>
+                    <p><strong>Date:</strong> {{ p.date }}</p>
+                    {% if p.image %}
+                        <img src="{{ p.image.url }}" alt="Image" class="img-fluid mb-3" height="500px" width="650px">
+                    {% endif %}
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+</div>
 
 
 

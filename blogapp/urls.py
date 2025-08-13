@@ -8,4 +8,7 @@ urlpatterns = [
     path('',views.home, name='home'),
     path('profile/',views.profile,name='profile'),
     path('explore/', views.explore, name='explore'),
+    path('addblog/',views.addblog,name='addblog'),
+    path('blog/<int:id>/', views.blog_detail, name='blog_detail'),
+
 ]

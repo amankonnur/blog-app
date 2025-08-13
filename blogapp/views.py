@@ -6,7 +6,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from blogapp.models import Post
 import markdown
 from django.utils.safestring import mark_safe
-
+from blogapp.forms import BlogForm
 
 
 # Create your views here.
@@ -52,3 +52,20 @@ def explore(request):
         p.content = mark_safe(markdown.markdown(p.content))
 
     return render(request, 'explore.html', {'posts': posts})
+
+
+def addblog(request):
+    if request.method=='POST':
+        form = BlogForm(request.POST,request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('explore')
+    else:
+        form = BlogForm
+    
+    return render(request,'addblog.html',{'form':form})
+
+from django.shortcuts import get_object_or_404
+def blog_detail(request, id):
+    post = get_object_or_404(Post, id=id)
+    return render(request, 'blogview.html', {'post': post})

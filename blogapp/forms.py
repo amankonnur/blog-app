@@ -1,5 +1,6 @@
 from django import forms
 from blogapp.models import Register
+from blogapp.models import Post
 
 class RegisterForm(forms.ModelForm):
     class Meta:
@@ -19,3 +20,9 @@ class RegisterForm(forms.ModelForm):
             raise forms.ValidationError("Passwords do not match.")
         
         return cleaned_data
+    
+
+class BlogForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = '__all__'

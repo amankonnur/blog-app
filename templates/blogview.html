@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+
+{% load static %}
+{% block content %}
+    <div class="container">
+        <h1>{{ post.title }}</h1>
+        <p><strong>Author:</strong> {{ post.authour }}</p>
+        <p><strong>Date:</strong> {{ post.date }}</p>
+        {% if post.image %}
+            <img src="{{ post.image.url }}" alt="Image" class="img-fluid mb-3" height="400px" width="600px">
+        {% endif %}
+        <div class="content">
+            {{ post.content|safe }}
+        </div>
+    </div>
+{% endblock %}
